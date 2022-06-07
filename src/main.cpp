@@ -1,15 +1,4 @@
 #include <Arduino.h>
-#include <SPI.h>
-//arduino  引脚接法,后面数字根据自己设备IO来更改
-//本例子使用ESP8266-12
-//本例子使用本店铺6位，8位，12位，16位 5x7 显示
-/*
-uint8_t din   = 11; // DA SDI SPI数据输入
-uint8_t clk   = 13; // CK CLK SPI时钟
-uint8_t cs    = 10; // CS SPI 片选
-uint8_t Reset = 1; // RS VFD屏幕的复位 低电平有效，正常使用拉高/无reset是因为模组内置RC 硬件复位电路
-uint8_t en    = 0; // EN VFD模组电源部分使能，EN 高电平使能，建议置高后100ms 以上再进行 VFD初始化命令发送，避免模块电源还没稳定就发出命令，若不用此功能，直接VCC短接/无EN 是因为模组EN与VCC已经内部链接好
-*/
 
 
 uint8_t din   = 19; // DA SDI SPI数据输入

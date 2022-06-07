@@ -39,7 +39,7 @@ void spi_write_data(unsigned char w_data)
         }
         w_data >>= 1;    
         digitalWrite(clk, HIGH);
-        delay(1);
+        delay(0.5);
     }
 }
 
