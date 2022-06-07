@@ -39,7 +39,7 @@ void spi_write_data(unsigned char w_data)
         }
         w_data >>= 1;    
         digitalWrite(clk, HIGH);
-        delayMicroseconds(5);
+        delayMicroseconds(100);  //如果不是ESP32就把这行注释掉。
     }
 }
 
