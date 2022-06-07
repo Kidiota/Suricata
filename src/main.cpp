@@ -5,7 +5,20 @@
 
 
 void setup() {
-  VFD_SETUP();  
+  /*
+  pinMode(en, OUTPUT);
+  pinMode(clk, OUTPUT);
+  pinMode(din, OUTPUT);
+  pinMode(cs, OUTPUT);
+  pinMode(Reset, OUTPUT);
+  digitalWrite(en, HIGH);
+  delayMicroseconds(100);
+  digitalWrite(Reset, LOW);
+  delayMicroseconds(5);
+  digitalWrite(Reset, HIGH);
+  VFD_init();
+  */
+  VFD_SETUP();
 }
 
 void loop() {

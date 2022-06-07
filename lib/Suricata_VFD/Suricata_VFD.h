@@ -39,7 +39,7 @@ void spi_write_data(unsigned char w_data)
         }
         w_data >>= 1;    
         digitalWrite(clk, HIGH);
-        delay(0.5);
+        delayMicroseconds(5);
     }
 }
 
@@ -162,15 +162,15 @@ void VFD_Write_ADRAM(unsigned char ad_dat , unsigned char on_off_flag)
 
 void VFD_SETUP()
 {
-    //pinMode(en, OUTPUT);
+    pinMode(en, OUTPUT);
     pinMode(clk, OUTPUT);
     pinMode(din, OUTPUT);
     pinMode(cs, OUTPUT);
     pinMode(Reset, OUTPUT);
-    //digitalWrite(en, HIGH);
+    digitalWrite(en, HIGH);
     delayMicroseconds(100);
     digitalWrite(Reset, LOW);
-    delayMicroseconds(5);
+    delayMicroseconds(10);
     digitalWrite(Reset, HIGH);
     VFD_init();
     VFD_WriteStr(0,"        ");
