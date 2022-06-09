@@ -101,19 +101,19 @@ void loop() {
     if(EC != 0)
       bright_time = 0;
     bright_time = bright_time + 1;
-    if(bright_time > 100){
+    if(bright_time > 1000){
       old_bright = bright;
       bright_time = 0;
     }
   }
-/*
+
   if(old_bright == bright){
     timeClient.update();
     String str=timeClient.getFormattedTime();
     char *formattedTime=(char*)str.c_str();
     VFD_WriteStr(0, formattedTime);
   }
-*/
+
   //Serial.println(timeClient.getFormattedTime());
   uint16_t light = analogRead(TEMT6000);
   Serial.println(light);
