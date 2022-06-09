@@ -127,13 +127,13 @@ void loop() {
     VFD_WriteStr(0, formattedTime);
   }
 
-  if(digitalRead(BT_1)==1){
+  if(digitalRead(BT_1)==0){
     digitalWrite(LED_1,HIGH);
   }
   else{
     digitalWrite(LED_1,LOW);
   }
-  if(digitalRead(BT_2)==1){
+  if(digitalRead(BT_2)==0){
     digitalWrite(LED_2,HIGH);
   }
   else{
