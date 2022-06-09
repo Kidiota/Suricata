@@ -10,8 +10,15 @@
 using namespace std;
 
 uint8_t TEMT6000 = 34;    //环境光传感器连接在GPIO34
-uint8_t EC11_A   = 21;
-uint8_t EC11_B   = 4;
+uint8_t EC11_A   = 21;    //编码器A脚
+uint8_t EC11_B   = 4;    //编码器B脚
+uint8_t EC_BT    = 35;    //编码器按钮
+uint8_t BT_1     = 33;    //按钮1
+uint8_t BT_2     = 32;    //按钮2
+uint8_t LED_1    = 25;    //LED1
+uint8_t LED_2     = 26;
+//注意：所有按钮和指示灯都是供地连接
+
 
 int EC = 0;
 bool EC11_A_P = 0;
@@ -31,8 +38,14 @@ NTPClient timeClient(ntpUDP, "ntp1.aliyun.com",8*60*60, 30*60*1000);    //设置
 
 void setup() {
   setCpuFrequencyMhz(80);
-  pinMode(EC11_A, INPUT_PULLUP);
-  pinMode(EC11_B, INPUT_PULLUP);
+  pinMode(EC11_A, INPUT_PULLUP);    //初始化编码器A脚
+  pinMode(EC11_B, INPUT_PULLUP);    //初始化编码器B脚
+  pinMode(EC_BT,INPUT_PULLUP);    //初始化编码器按钮
+  pinMode(BT_1,INPUT_PULLUP);    //初始化按钮1
+  pinMode(BT_2,INPUT_PULLUP);    //初始化按钮2
+  pinMode(LED_1,OUTPUT);    //初始化LED1
+  pinMode(LED_2,OUTPUT);    //初始化LED2
+
   Serial.begin(115200);    //串口设置波特率
   pinMode(TEMT6000,INPUT);
   VFD_SETUP();    //屏幕初始化
@@ -114,6 +127,18 @@ void loop() {
     VFD_WriteStr(0, formattedTime);
   }
 
+  if(digitalRead(BT_1)==1){
+    digitalWrite(LED_1,HIGH);
+  }
+  else{
+    digitalWrite(LED_1,LOW);
+  }
+  if(digitalRead(BT_2)==1){
+    digitalWrite(LED_2,HIGH);
+  }
+  else{
+    digitalWrite(LED_2,LOW);
+  }
   //Serial.println(timeClient.getFormattedTime());
   uint16_t light = analogRead(TEMT6000);
   Serial.println(light);
