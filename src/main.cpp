@@ -5,15 +5,15 @@
 #include <WiFiUdp.h>
 #include <NTPClient.h>
 #include <stdlib.h>
-#include "esp32-hal-cpu.h"
+#include <esp32-hal-cpu.h>
+#include <esp32-hal-ledc.h>
 
 using namespace std;
 
 uint8_t EC11_A   = 21;    //编码器A脚
 uint8_t EC11_B   = 4;    //编码器B脚
-uint8_t EC_BT    = 35;    //编码器按钮
+uint8_t EC_BT    = 32;    //编码器按钮
 uint8_t BT_1     = 33;    //按钮1
-uint8_t BT_2     = 32;    //按钮2
 uint8_t LED_1    = 25;    //LED1
 uint8_t LED_2    = 26;    //LED2
 //注意：所有按钮和指示灯都是供地连接
@@ -41,7 +41,6 @@ void setup() {
   pinMode(EC11_B, INPUT_PULLUP);    //初始化编码器B脚
   pinMode(EC_BT,INPUT_PULLUP);    //初始化编码器按钮
   pinMode(BT_1,INPUT_PULLUP);    //初始化按钮1
-  pinMode(BT_2,INPUT_PULLUP);    //初始化按钮2
   pinMode(LED_1,OUTPUT);    //初始化LED1
   pinMode(LED_2,OUTPUT);    //初始化LED2
 
@@ -60,7 +59,8 @@ void setup() {
   Serial.print("WiFi ok");
   delay(1000);
   VFD_WriteStr(0,"        ");
-
+  
+  
 }
 
 void loop() {
@@ -132,7 +132,7 @@ void loop() {
   else{
     digitalWrite(LED_1,LOW);
   }
-  if(digitalRead(BT_2)==0){
+  if(digitalRead(EC_BT)==0){
     digitalWrite(LED_2,HIGH);
   }
   else{
