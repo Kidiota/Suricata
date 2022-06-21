@@ -7,6 +7,7 @@
 #include <stdlib.h>
 #include <esp32-hal-cpu.h>
 #include <esp32-hal-ledc.h>
+#include <MUSIC.h>
 
 using namespace std;
 
@@ -36,9 +37,7 @@ WiFiUDP ntpUDP;    //更新时间
 NTPClient timeClient(ntpUDP, "ntp1.aliyun.com",8*60*60, 30*60*1000);    //设置时区
 
 //蜂鸣器相关变量
-uint16_t freq = 440;    //设置频率
-uint8_t channel = 0;    //通道号,取值0~15 
-uint8_t resolution = 8;    //计数位数，2的8次幂=256
+
 
 void setup() {
   setCpuFrequencyMhz(80);
@@ -50,7 +49,7 @@ void setup() {
   pinMode(LED_2,OUTPUT);    //初始化LED2
   ledcAttachPin(buzzer,channel);    //定义蜂鸣器针脚
   ledcSetup(channel,freq,resolution);    //初始化蜂鸣器
-
+  setBPM(128);    //设置蜂鸣器BPM
   Serial.begin(115200);    //串口设置波特率
 
   VFD_SETUP();    //屏幕初始化
@@ -60,20 +59,142 @@ void setup() {
       VFD_WriteStr(i, ".");    //在屏幕上显示一个点
       i = i + 1;    //向后移一位
       Serial.print(".");
-      delay(100);
+      delay(10);
     }
   VFD_WriteStr(0,"OK");
   Serial.print("WiFi ok");
-  delay(1000);
   VFD_WriteStr(0,"        ");
-  ledcWriteTone(channel,440);
-  delay(100);
-  ledcWriteTone(channel,880);
-  delay(100);
-  ledcWriteTone(channel,1320);
-  delay(100);
-  ledcWriteTone(channel,0);
-  
+
+  BuzzTone(0,2);
+  BuzzTone(E_5,1);
+  BuzzTone(E_5,1);
+  BuzzTone(E_5,2);
+  BuzzTone(E_5,2);
+  BuzzTone(D_5,2);
+  BuzzTone(E_5,2);
+  BuzzTone(D_5,2);
+  BuzzTone(C_5,2);
+
+  BuzzTone(C_5,2);
+  BuzzTone(C_5,2);
+  BuzzTone(C_5,2);
+  BuzzTone(C_5,2);
+  BuzzTone(B_4,2);
+  BuzzTone(C_5,2);
+  BuzzTone(B_4,2);
+  BuzzTone(G_4,2);
+
+  BuzzTone(A_4,2);
+  BuzzTone(A_4,2);
+  BuzzTone(0,2);
+  BuzzTone(G_4,2);
+  BuzzTone(A_4,2);
+  BuzzTone(A_4,2);
+  BuzzTone(0,2);
+  BuzzTone(G_4,2);
+
+  BuzzTone(A_4,2);
+  BuzzTone(A_4,2);
+  BuzzTone(0,2);
+  BuzzTone(G_4,2);
+  BuzzTone(A_4,2);
+  BuzzTone(A_4,2);
+  BuzzTone(B_4,2);
+  BuzzTone(B_4,2);
+
+  BuzzTone(C_5,2);
+  BuzzTone(C_5,2);
+  BuzzTone(0,2);
+  BuzzTone(A_4,2);
+  BuzzTone(C_5,2);
+  BuzzTone(C_5,2);
+  BuzzTone(0,2);
+  BuzzTone(A_4,2);
+
+  BuzzTone(D_5,2);
+  BuzzTone(D_5,2);
+  BuzzTone(D_5,2);
+  BuzzTone(C_5,2);
+  BuzzTone(C_5,2);
+  BuzzTone(C_5,2);
+  BuzzTone(B_4,2);
+  BuzzTone(C_5,2);
+
+
+  BuzzTone(0,2);
+  BuzzTone(E_5,1);
+  BuzzTone(E_5,1);
+  BuzzTone(E_5,2);
+  BuzzTone(E_5,2);
+  BuzzTone(D_5,2);
+  BuzzTone(E_5,2);
+  BuzzTone(D_5,2);
+  BuzzTone(C_5,2);
+
+  BuzzTone(C_5,2);
+  BuzzTone(C_5,2);
+  BuzzTone(C_5,2);
+  BuzzTone(C_5,2);
+  BuzzTone(B_4,2);
+  BuzzTone(C_5,2);
+  BuzzTone(B_4,2);
+  BuzzTone(G_4,2);
+
+  BuzzTone(A_4,2);
+  BuzzTone(A_4,2);
+  BuzzTone(0,2);
+  BuzzTone(G_4,2);
+  BuzzTone(A_4,2);
+  BuzzTone(A_4,2);
+  BuzzTone(0,2);
+  BuzzTone(G_4,2);
+
+  BuzzTone(C_5,2);
+  BuzzTone(C_5,2);
+  BuzzTone(C_5,2);
+  BuzzTone(B_4,2);
+  BuzzTone(B_4,2);
+  BuzzTone(B_4,2);
+  BuzzTone(A_4,2);
+  BuzzTone(B_4,2);
+
+  BuzzTone(0,2);
+  BuzzTone(E_5,1);
+  BuzzTone(E_5,1);
+  BuzzTone(E_5,2);
+  BuzzTone(E_5,2);
+  BuzzTone(D_5,2);
+  BuzzTone(E_5,2);
+  BuzzTone(D_5,2);
+  BuzzTone(C_5,2);
+
+  BuzzTone(C_5,2);
+  BuzzTone(C_5,2);
+  BuzzTone(C_5,2);
+  BuzzTone(C_5,2);
+  BuzzTone(B_4,2);
+  BuzzTone(C_5,2);
+  BuzzTone(B_4,2);
+  BuzzTone(G_4,2);
+
+  BuzzTone(A_4,2);
+  BuzzTone(A_4,2);
+  BuzzTone(0,2);
+  BuzzTone(G_4,1);
+  BuzzTone(G_4,1);
+  BuzzTone(A_4,2);
+  BuzzTone(A_4,2);
+  BuzzTone(G_4,2);
+  BuzzTone(A_4,2);
+
+  BuzzTone(C_5,2);
+  BuzzTone(C_5,2);
+  BuzzTone(C_5,2);
+  BuzzTone(B_4,2);
+  BuzzTone(B_4,2);
+  BuzzTone(B_4,2);
+  BuzzTone(A_4,4);
+
 }
 
 void loop() {
@@ -151,6 +272,5 @@ void loop() {
   else{
     digitalWrite(LED_2,LOW);
   }
-
 
 }
