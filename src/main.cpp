@@ -16,6 +16,7 @@ uint8_t EC_BT    = 32;    //编码器按钮
 uint8_t BT_1     = 33;    //按钮1
 uint8_t LED_1    = 25;    //LED1
 uint8_t LED_2    = 26;    //LED2
+uint8_t buzzer   = 27;    //蜂鸣器
 //注意：所有按钮和指示灯都是供地连接
 
 
@@ -34,6 +35,10 @@ const char *password1 = "return01";    //首选wifi 密码
 WiFiUDP ntpUDP;    //更新时间
 NTPClient timeClient(ntpUDP, "ntp1.aliyun.com",8*60*60, 30*60*1000);    //设置时区
 
+//蜂鸣器相关变量
+uint16_t freq = 440;    //设置频率
+uint8_t channel = 0;    //通道号,取值0~15 
+uint8_t resolution = 8;    //计数位数，2的8次幂=256
 
 void setup() {
   setCpuFrequencyMhz(80);
@@ -43,6 +48,8 @@ void setup() {
   pinMode(BT_1,INPUT_PULLUP);    //初始化按钮1
   pinMode(LED_1,OUTPUT);    //初始化LED1
   pinMode(LED_2,OUTPUT);    //初始化LED2
+  ledcAttachPin(buzzer,channel);    //定义蜂鸣器针脚
+  ledcSetup(channel,freq,resolution);    //初始化蜂鸣器
 
   Serial.begin(115200);    //串口设置波特率
 
@@ -59,7 +66,13 @@ void setup() {
   Serial.print("WiFi ok");
   delay(1000);
   VFD_WriteStr(0,"        ");
-  
+  ledcWriteTone(channel,440);
+  delay(100);
+  ledcWriteTone(channel,880);
+  delay(100);
+  ledcWriteTone(channel,1320);
+  delay(100);
+  ledcWriteTone(channel,0);
   
 }
 
