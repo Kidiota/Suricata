@@ -13,8 +13,9 @@ using namespace std;
 
 uint8_t EC11_A   = 21;    //编码器A脚
 uint8_t EC11_B   = 4;    //编码器B脚
-uint8_t EC_BT    = 32;    //编码器按钮
+uint8_t EC_BT    = 14;    //编码器按钮
 uint8_t BT_1     = 33;    //按钮1
+uint8_t BT_2     = 32;
 uint8_t LED_1    = 25;    //LED1
 uint8_t LED_2    = 26;    //LED2
 uint8_t buzzer   = 27;    //蜂鸣器
